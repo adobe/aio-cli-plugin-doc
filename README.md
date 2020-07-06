@@ -19,7 +19,7 @@ Generates a starter documentation website powered by Gatsby.
 
 # Usage
 ```sh-session
-$ aio plugins:install -g @adobe/aio-cli-plugin-doc
+$ aio plugins:install @adobe/aio-cli-plugin-doc
 $ # OR
 $ aio discover -i
 $ aio doc --help
