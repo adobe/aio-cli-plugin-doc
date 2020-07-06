@@ -12,6 +12,7 @@ Generates a starter documentation website powered by Gatsby.
 `doc` commands for the Adobe I/O CLI
 
 <!-- toc -->
+* [Adobe I/O CLI Documentation Website Plugin](#adobe-io-cli-documentation-website-plugin)
 * [Usage](#usage)
 * [Commands](#commands)
 <!-- tocstop -->
