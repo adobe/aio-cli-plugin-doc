@@ -1,0 +1,55 @@
+/*
+Copyright 2020 Adobe. All rights reserved.
+This file is licensed to you under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License. You may obtain a copy
+of the License at http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under
+the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR REPRESENTATIONS
+OF ANY KIND, either express or implied. See the License for the specific language
+governing permissions and limitations under the License.
+*/
+
+const { Command } = require('@oclif/command')
+const aioLogger = require('@adobe/aio-lib-core-logging')('@adobe/aio-cli-plugin-doc', { provider: 'debug' })
+const path = require('path')
+const fs = require('fs-extra')
+const yeoman = require('yeoman-environment')
+
+class InitCommand extends Command {
+  async run () {
+    const { args } = this.parse(InitCommand)
+    const destDir = path.resolve(args.path)
+
+    if (args.path !== '.') {
+      fs.ensureDirSync(destDir)
+      process.chdir(destDir)
+    }
+
+    const env = yeoman.createEnv()
+    aioLogger.debug('creating new docs with init command.')
+
+    // call code generator
+    env.register(require.resolve('../../generator'), 'gen-docs')
+    const res = await env.run('gen-docs', {
+      'project-name': path.basename(destDir)
+    })
+
+    // finalize configuration data
+    this.log('✔ Doc initialization finished!')
+    return res
+  }
+}
+
+InitCommand.description = `Create a new Adobe I/O doc folder
+`
+
+InitCommand.args = [
+  {
+    name: 'path',
+    description: 'Path to the doc directory',
+    default: '.'
+  }
+]
+
+module.exports = InitCommand

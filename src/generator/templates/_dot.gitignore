@@ -1,0 +1,19 @@
+# package directories
+node_modules
+jspm_packages
+
+# Test output
+junit.xml
+
+# IDE & Temp
+.cache
+.idea
+.nyc_output
+.vscode
+coverage
+
+# OSX
+.DS_Store
+
+# yeoman
+.yo-repository
