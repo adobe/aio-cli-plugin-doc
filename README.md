@@ -27,13 +27,26 @@ $ aio doc --help
 
 # Commands
 <!-- commands -->
+* [`aio doc:clean [PATH]`](#aio-docclean-path)
 * [`aio doc:generate [PATH]`](#aio-docgenerate-path)
 * [`aio doc:init [PATH]`](#aio-docinit-path)
 * [`aio doc:run [PATH]`](#aio-docrun-path)
 
+## `aio doc:clean [PATH]`
+
+Clean the documentation site
+
+```
+USAGE
+  $ aio doc:clean [PATH]
+
+ARGUMENTS
+  PATH  [default: .] Path to the doc directory
+```
+
 ## `aio doc:generate [PATH]`
 
-Generate the Adobe docs
+Generate the production docs
 
 ```
 USAGE
@@ -45,7 +58,7 @@ ARGUMENTS
 
 ## `aio doc:init [PATH]`
 
-Create a new Adobe I/O doc folder
+Create a new Adobe I/O doc site
 
 ```
 USAGE
@@ -53,11 +66,14 @@ USAGE
 
 ARGUMENTS
   PATH  [default: .] Path to the doc directory
+
+OPTIONS
+  -t, --theme=theme  the theme to install (url to a git repo)
 ```
 
 ## `aio doc:run [PATH]`
 
-Run the Adobe docs locally
+Run a development version of the docs locally
 
 ```
 USAGE

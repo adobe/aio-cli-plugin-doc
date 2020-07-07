@@ -13,22 +13,23 @@ governing permissions and limitations under the License.
 const BaseCommand = require('../../base_command')
 const path = require('path')
 
-class GenerateCommand extends BaseCommand {
+class CleanCommand extends BaseCommand {
   async run () {
-    const { args } = this.parse(GenerateCommand)
+    const { args } = this.parse(CleanCommand)
 
     if (args.path !== '.') {
       const destDir = path.resolve(args.path)
       process.chdir(destDir)
     }
 
-    return this.gatsby(['build'])
+    return this.gatsby(['clean'])
   }
 }
 
-GenerateCommand.description = 'Generate the production docs'
+CleanCommand.description = `Clean the documentation site
+`
 
-GenerateCommand.args = [
+CleanCommand.args = [
   {
     name: 'path',
     description: 'Path to the doc directory',
@@ -36,4 +37,4 @@ GenerateCommand.args = [
   }
 ]
 
-module.exports = GenerateCommand
+module.exports = CleanCommand

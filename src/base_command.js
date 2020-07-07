@@ -10,30 +10,30 @@ OF ANY KIND, either express or implied. See the License for the specific languag
 governing permissions and limitations under the License.
 */
 
-const BaseCommand = require('../../base_command')
+const { Command } = require('@oclif/command')
 const path = require('path')
+const execa = require('execa')
+const rootFolder = path.resolve(path.join(__dirname, '..'))
 
-class GenerateCommand extends BaseCommand {
+class BaseCommand extends Command {
   async run () {
-    const { args } = this.parse(GenerateCommand)
+    throw new Error('abstract method is not implemented')
+  }
 
-    if (args.path !== '.') {
-      const destDir = path.resolve(args.path)
-      process.chdir(destDir)
+  gatsbyDefaultOptions () {
+    return {
+      preferLocal: true,
+      localDir: rootFolder,
+      stdio: 'inherit',
+      env: {
+        FORCE_COLOR: true
+      }
     }
+  }
 
-    return this.gatsby(['build'])
+  async gatsby (args, options = {}) {
+    return execa('gatsby', args, { ...this.gatsbyDefaultOptions(), ...options })
   }
 }
 
-GenerateCommand.description = 'Generate the production docs'
-
-GenerateCommand.args = [
-  {
-    name: 'path',
-    description: 'Path to the doc directory',
-    default: '.'
-  }
-]
-
-module.exports = GenerateCommand
+module.exports = BaseCommand
