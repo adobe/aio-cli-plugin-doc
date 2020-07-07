@@ -11,12 +11,15 @@ governing permissions and limitations under the License.
 */
 
 const TheCommand = require('../../../src/commands/doc/init')
-const fs = require('fs-extra')
 const path = require('path')
 const yeoman = require('yeoman-environment')
+const execa = require('execa')
 
-jest.mock('fs-extra')
+jest.mock('execa')
 jest.mock('yeoman-environment')
+jest.mock('fs')
+
+const defaultTheme = 'https://github.com/codebushi/gatsby-theme-document-example'
 
 const mockRegister = jest.fn()
 const mockRun = jest.fn()
@@ -29,7 +32,7 @@ beforeEach(() => {
   mockRegister.mockReset()
   mockRun.mockReset()
   yeoman.createEnv.mockClear()
-  fs.ensureDirSync.mockClear()
+  execa.mockReset()
 })
 
 test('exports', async () => {
@@ -40,6 +43,7 @@ describe('run', () => {
   const spyChdir = jest.spyOn(process, 'chdir')
   const spyCwd = jest.spyOn(process, 'cwd')
   let fakeCwd
+  let command
 
   beforeEach(() => {
     fakeCwd = 'lifeisgood'
@@ -47,16 +51,20 @@ describe('run', () => {
     spyCwd.mockClear()
     spyChdir.mockImplementation(dir => { fakeCwd = dir })
     spyCwd.mockImplementation(() => fakeCwd)
+    execa.mockClear()
+    command = new TheCommand([])
   })
 
   afterAll(() => {
     spyChdir.mockRestore()
     spyCwd.mockRestore()
+    execa.mockRestore()
   })
 
   test('some path', async () => {
     const appFolder = 'some-path'
-    await TheCommand.run([appFolder])
+    command.argv = [appFolder]
+    await command.run()
 
     expect(yeoman.createEnv).toHaveBeenCalled()
     expect(mockRegister).toHaveBeenCalledTimes(1)
@@ -64,12 +72,13 @@ describe('run', () => {
     expect(mockRun).toHaveBeenNthCalledWith(1, genDoc, {
       'project-name': appFolder
     })
-    expect(fs.ensureDirSync).toHaveBeenCalledWith(expect.stringContaining(appFolder))
+
     expect(spyChdir).toHaveBeenCalledWith(expect.stringContaining(appFolder))
+    expect(execa).toHaveBeenCalledWith('gatsby', ['new', expect.any(String), defaultTheme], command.gatsbyDefaultOptions())
   })
 
   test('no path', async () => {
-    await TheCommand.run([])
+    await command.run()
     const appFolder = path.resolve('.')
 
     expect(yeoman.createEnv).toHaveBeenCalled()
@@ -78,7 +87,8 @@ describe('run', () => {
     expect(mockRun).toHaveBeenNthCalledWith(1, genDoc, {
       'project-name': path.basename(appFolder)
     })
-    expect(fs.ensureDirSync).not.toHaveBeenCalled()
     expect(spyChdir).not.toHaveBeenCalled()
+
+    expect(execa).toHaveBeenCalledWith('gatsby', ['new', expect.any(String), defaultTheme], command.gatsbyDefaultOptions())
   })
 })

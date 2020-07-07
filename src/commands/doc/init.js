@@ -10,24 +10,29 @@ OF ANY KIND, either express or implied. See the License for the specific languag
 governing permissions and limitations under the License.
 */
 
-const { Command } = require('@oclif/command')
+const { flags } = require('@oclif/command')
+const BaseCommand = require('../../base_command')
 const aioLogger = require('@adobe/aio-lib-core-logging')('@adobe/aio-cli-plugin-doc', { provider: 'debug' })
 const path = require('path')
-const fs = require('fs-extra')
 const yeoman = require('yeoman-environment')
 
-class InitCommand extends Command {
+class InitCommand extends BaseCommand {
   async run () {
     const { args } = this.parse(InitCommand)
     const destDir = path.resolve(args.path)
+    const theme = flags.theme || 'https://github.com/codebushi/gatsby-theme-document-example'
+
+    aioLogger.debug(`using theme: ${theme}`)
+    aioLogger.debug('creating new docs with init command.')
+
+    this.log(`Using theme: ${theme}`)
+    await this.gatsby(['new', destDir, theme])
 
     if (args.path !== '.') {
-      fs.ensureDirSync(destDir)
       process.chdir(destDir)
     }
 
     const env = yeoman.createEnv()
-    aioLogger.debug('creating new docs with init command.')
 
     // call code generator
     env.register(require.resolve('../../generator'), 'gen-docs')
@@ -41,8 +46,15 @@ class InitCommand extends Command {
   }
 }
 
-InitCommand.description = `Create a new Adobe I/O doc folder
+InitCommand.description = `Create a new Adobe I/O doc site
 `
+InitCommand.flags = {
+  theme: flags.string({
+    char: 't',
+    description: 'the theme to install (url to a git repo)',
+    multiple: false // allow setting this flag multiple times
+  })
+}
 
 InitCommand.args = [
   {

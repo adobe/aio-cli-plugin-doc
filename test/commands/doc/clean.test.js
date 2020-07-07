@@ -10,7 +10,7 @@ OF ANY KIND, either express or implied. See the License for the specific languag
 governing permissions and limitations under the License.
 */
 
-const TheCommand = require('../../../src/commands/doc/generate')
+const TheCommand = require('../../../src/commands/doc/clean')
 const execa = require('execa')
 
 jest.mock('execa')
@@ -20,7 +20,7 @@ test('exports', async () => {
   expect(typeof TheCommand).toEqual('function')
 })
 
-describe('generate', () => {
+describe('clean', () => {
   const spyChdir = jest.spyOn(process, 'chdir')
   const spyCwd = jest.spyOn(process, 'cwd')
   let fakeCwd
@@ -29,15 +29,17 @@ describe('generate', () => {
   beforeEach(() => {
     fakeCwd = 'my-cwd'
     spyChdir.mockClear()
-    spyCwd.mockClear()
     spyChdir.mockImplementation(dir => { fakeCwd = dir })
+    spyCwd.mockClear()
     spyCwd.mockImplementation(() => fakeCwd)
+    execa.mockClear()
     command = new TheCommand([])
   })
 
   afterAll(() => {
     spyChdir.mockRestore()
     spyCwd.mockRestore()
+    execa.mockRestore()
   })
 
   test('some path', async () => {
@@ -45,14 +47,14 @@ describe('generate', () => {
     command.argv = [appFolder]
     await command.run()
 
-    expect(execa).toHaveBeenCalledWith('gatsby', ['build'], command.gatsbyDefaultOptions())
+    expect(execa).toHaveBeenCalledWith('gatsby', ['clean'], command.gatsbyDefaultOptions())
     expect(spyChdir).toHaveBeenCalledWith(expect.stringContaining(appFolder))
   })
 
   test('no args', async () => {
     await command.run()
 
-    expect(execa).toHaveBeenCalledWith('gatsby', ['build'], command.gatsbyDefaultOptions())
+    expect(execa).toHaveBeenCalledWith('gatsby', ['clean'], command.gatsbyDefaultOptions())
     expect(spyChdir).not.toHaveBeenCalled()
   })
 })

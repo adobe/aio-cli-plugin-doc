@@ -39,34 +39,24 @@ class DocGenerator extends Generator {
 
   writing () {
     this.sourceRoot(path.join(__dirname, './templates/'))
-    const gatsbyTemplatePath = path.join(__dirname, '../../node_modules', 'gatsby-theme-document')
 
-    console.log('GATSBY TEMPLATE', gatsbyTemplatePath)
-
-    // copy everything that does not start with an _
-    this.fs.copy(
-      [
-        `${gatsbyTemplatePath}/**`,
-        `!${gatsbyTemplatePath}/node_modules/**`
-      ],
-      this.destinationPath(),
-      this.props
-    )
+    // TODO: we don't have anything to copy over yet.
 
     // copy everything that does not start with an _
-    this.fs.copyTpl(
-        `${this.templatePath()}/**/!(_)*/`,
-        this.destinationPath(),
-        this.props
-    )
+    // this.fs.copyTpl(
+    //     `${this.templatePath()}/**/!(_)*/`,
+    //     this.destinationPath(),
+    //     this.props
+    // )
 
     // npm pack will not include .gitignore template files so we need to rename it
     // see https://github.com/npm/npm/issues/3763
-    this.fs.copyTpl(
-      this.templatePath('_dot.gitignore'),
-      this.destinationPath('.gitignore'),
-      this.props
-    )
+    // this.fs.copyTpl(
+    //   this.templatePath('_dot.gitignore'),
+    //   this.destinationPath('.gitignore'),
+    //   this.props
+    // )
+
     // let actions and ui generator create subfolders + manifest
   }
 

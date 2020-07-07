@@ -10,36 +10,23 @@ OF ANY KIND, either express or implied. See the License for the specific languag
 governing permissions and limitations under the License.
 */
 
-const { Command } = require('@oclif/command')
+const BaseCommand = require('../../base_command')
 const path = require('path')
-const fs = require('fs-extra')
-const execa = require('execa')
 
-class RunCommand extends Command {
+class RunCommand extends BaseCommand {
   async run () {
     const { args } = this.parse(RunCommand)
-    const destDir = path.resolve(args.path)
 
     if (args.path !== '.') {
-      fs.ensureDirSync(destDir)
+      const destDir = path.resolve(args.path)
       process.chdir(destDir)
     }
 
-    const publicFolderExists = await fs.pathExists(path.join(destDir, 'public'))
-    if (!publicFolderExists) {
-      this.error('The docs have not been generated yet. Run `aio doc generate`.')
-    }
-
-    return execa('npx', ['gatsby', 'develop', '--open'], {
-      stdio: 'inherit',
-      env: {
-        FORCE_COLOR: true
-      }
-    })
+    return this.gatsby(['develop', '--open'])
   }
 }
 
-RunCommand.description = `Run the Adobe docs locally
+RunCommand.description = `Run a development version of the docs locally
 `
 
 RunCommand.args = [
