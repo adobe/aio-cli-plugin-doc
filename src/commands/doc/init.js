@@ -20,7 +20,7 @@ class InitCommand extends BaseCommand {
   async run () {
     const { args, flags } = this.parse(InitCommand)
     const destDir = path.resolve(args.path)
-    const theme = flags.theme || 'https://github.com/codebushi/gatsby-theme-document-example'
+    const theme = flags.theme || 'https://github.com/adobe/gatsby-theme-spectrum-example'
 
     aioLogger.debug(`using theme: ${theme}`)
     aioLogger.debug('creating new docs with init command.')
