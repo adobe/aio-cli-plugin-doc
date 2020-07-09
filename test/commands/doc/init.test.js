@@ -19,7 +19,7 @@ jest.mock('execa')
 jest.mock('yeoman-environment')
 jest.mock('fs')
 
-const defaultTheme = 'https://github.com/codebushi/gatsby-theme-document-example'
+const defaultTheme = 'https://github.com/adobe/gatsby-theme-spectrum-example'
 
 const mockRegister = jest.fn()
 const mockRun = jest.fn()
@@ -75,6 +75,23 @@ describe('run', () => {
 
     expect(spyChdir).toHaveBeenCalledWith(expect.stringContaining(appFolder))
     expect(execa).toHaveBeenCalledWith('gatsby', ['new', expect.any(String), defaultTheme], command.gatsbyDefaultOptions())
+  })
+
+  test('some path, --theme flag', async () => {
+    const appFolder = 'some-path'
+    const newTheme = 'http://example.com/theme'
+    command.argv = [appFolder, '--theme', newTheme]
+    await command.run()
+
+    expect(yeoman.createEnv).toHaveBeenCalled()
+    expect(mockRegister).toHaveBeenCalledTimes(1)
+    const genDoc = mockRegister.mock.calls[0][1]
+    expect(mockRun).toHaveBeenNthCalledWith(1, genDoc, {
+      'project-name': appFolder
+    })
+
+    expect(spyChdir).toHaveBeenCalledWith(expect.stringContaining(appFolder))
+    expect(execa).toHaveBeenCalledWith('gatsby', ['new', expect.any(String), newTheme], command.gatsbyDefaultOptions())
   })
 
   test('no path', async () => {
