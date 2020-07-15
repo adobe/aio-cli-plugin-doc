@@ -1,6 +1,6 @@
 {
   "name": "@adobe/aio-cli-plugin-doc",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "dependencies": {
     "@adobe/aio-lib-core-config": "^1.2.8",
     "@adobe/aio-lib-core-logging": "^1.1.0",
