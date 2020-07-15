@@ -40,14 +40,18 @@ class DocGenerator extends Generator {
   writing () {
     this.sourceRoot(path.join(__dirname, './templates/'))
 
-    // TODO: we don't have anything to copy over yet.
-
     // copy everything that does not start with an _
     // this.fs.copyTpl(
     //     `${this.templatePath()}/**/!(_)*/`,
     //     this.destinationPath(),
     //     this.props
     // )
+
+    this.fs.copyTpl(
+      this.templatePath('.github'),
+      this.destinationPath('.github'),
+      this.props
+    )
 
     // npm pack will not include .gitignore template files so we need to rename it
     // see https://github.com/npm/npm/issues/3763
@@ -62,6 +66,7 @@ class DocGenerator extends Generator {
 
   async install () {
     // npm install only
+    this.npmInstall(['gh-pages'], { 'save-dev': true })
     return this.installDependencies({ bower: false, skipMessage: true })
   }
 }
