@@ -1,5 +1,10 @@
 {
   "name": "@adobe/aio-cli-plugin-doc",
+  "homepage": "https://github.com/adobe/aio-cli-plugin-doc",
+  "repository": "https://github.com/adobe/aio-cli-plugin-doc",
+  "bugs": {
+    "url": "https://github.com/adobe/aio-cli-plugin-doc/issues"
+  },  
   "version": "0.0.4",
   "dependencies": {
     "@adobe/aio-lib-core-config": "^1.2.8",
