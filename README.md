@@ -44,6 +44,8 @@ ARGUMENTS
   PATH  [default: .] Path to the doc directory
 ```
 
+_See code: [src/commands/doc/clean.js](https://github.com/adobe/aio-cli-plugin-doc/blob/0.0.5/src/commands/doc/clean.js)_
+
 ## `aio doc:generate [PATH]`
 
 Generate the production docs
@@ -55,6 +57,8 @@ USAGE
 ARGUMENTS
   PATH  [default: .] Path to the doc directory
 ```
+
+_See code: [src/commands/doc/generate.js](https://github.com/adobe/aio-cli-plugin-doc/blob/0.0.5/src/commands/doc/generate.js)_
 
 ## `aio doc:init [PATH]`
 
@@ -71,6 +75,8 @@ OPTIONS
   -t, --theme=theme  the theme to install (url to a git repo)
 ```
 
+_See code: [src/commands/doc/init.js](https://github.com/adobe/aio-cli-plugin-doc/blob/0.0.5/src/commands/doc/init.js)_
+
 ## `aio doc:run [PATH]`
 
 Run a development version of the docs locally
@@ -82,6 +88,8 @@ USAGE
 ARGUMENTS
   PATH  [default: .] Path to the doc directory
 ```
+
+_See code: [src/commands/doc/run.js](https://github.com/adobe/aio-cli-plugin-doc/blob/0.0.5/src/commands/doc/run.js)_
 <!-- commandsstop -->
 
 ## Contributing

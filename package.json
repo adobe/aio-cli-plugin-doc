@@ -4,8 +4,8 @@
   "repository": "https://github.com/adobe/aio-cli-plugin-doc",
   "bugs": {
     "url": "https://github.com/adobe/aio-cli-plugin-doc/issues"
-  },  
-  "version": "0.0.4",
+  },
+  "version": "0.0.5",
   "dependencies": {
     "@adobe/aio-lib-core-config": "^1.2.8",
     "@adobe/aio-lib-core-logging": "^1.1.0",
