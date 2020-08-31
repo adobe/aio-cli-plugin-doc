@@ -72,7 +72,7 @@ ARGUMENTS
   PATH  [default: .] Path to the doc directory
 
 OPTIONS
-  -t, --theme=theme  the theme to install (url to a git repo)
+  -t, --template=template  the template to install (url to a git repo)
 ```
 
 _See code: [src/commands/doc/init.js](https://github.com/adobe/aio-cli-plugin-doc/blob/0.0.5/src/commands/doc/init.js)_

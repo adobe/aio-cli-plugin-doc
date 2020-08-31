@@ -20,13 +20,13 @@ class InitCommand extends BaseCommand {
   async run () {
     const { args, flags } = this.parse(InitCommand)
     const destDir = path.resolve(args.path)
-    const theme = flags.theme || 'https://github.com/adobe/gatsby-theme-spectrum-example'
+    const template = flags.template || 'https://github.com/AdobeDocs/gatsby-theme-parliament-documentation'
 
-    aioLogger.debug(`using theme: ${theme}`)
+    aioLogger.debug(`using template: ${template}`)
     aioLogger.debug('creating new docs with init command.')
 
-    this.log(`Using theme: ${theme}`)
-    await this.gatsby(['new', destDir, theme])
+    this.log(`Using template: ${template}`)
+    await this.gatsby(['new', destDir, template])
 
     if (args.path !== '.') {
       process.chdir(destDir)
@@ -49,9 +49,9 @@ class InitCommand extends BaseCommand {
 InitCommand.description = `Create a new Adobe I/O doc site
 `
 InitCommand.flags = {
-  theme: flags.string({
+  template: flags.string({
     char: 't',
-    description: 'the theme to install (url to a git repo)',
+    description: 'the template to install (url to a git repo)',
     multiple: false // allow setting this flag multiple times
   })
 }
