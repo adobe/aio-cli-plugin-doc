@@ -25,20 +25,6 @@ jobs:
         run: |
           echo "::error::PRs from forks are not supported (Github security issue).%0APRs should be from a branch in the same repo, created by a Contributor."
           exit 1
-      - name: check prod azure connection string
-        if: env.AZURE_PROD_CONNECTION_STRING == null
-        run: |
-          echo "::error::Please set the Azure Blob Storage connection string as AZURE_PROD_CONNECTION_STRING in Github Secrets"
-          exit 1
-        env:
-          AZURE_PROD_CONNECTION_STRING: ${{ secrets.AZURE_PROD_CONNECTION_STRING }}
-      - name: check dev azure connection string
-        if: env.AZURE_DEV_CONNECTION_STRING == null
-        run: |
-          echo "::error::Please set the Azure Blob Storage connection string as AZURE_DEV_CONNECTION_STRING in Github Secrets"
-          exit 1
-        env:
-          AZURE_DEV_CONNECTION_STRING: ${{ secrets.AZURE_DEV_CONNECTION_STRING }}
 
   echo-state:
     needs: [set-state]
@@ -56,6 +42,13 @@ jobs:
     runs-on: ubuntu-latest
     if: needs.set-state.outputs.pr_approved == 'true' && needs.set-state.outputs.deploy_dev == 'true'
     steps:
+      - name: check dev azure connection string
+        if: env.AZURE_DEV_CONNECTION_STRING == null
+        run: |
+          echo "::error::Please set the Azure Blob Storage connection string as AZURE_DEV_CONNECTION_STRING in Github Secrets"
+          exit 1
+        env:
+          AZURE_DEV_CONNECTION_STRING: ${{ secrets.AZURE_DEV_CONNECTION_STRING }}
       - name: 'Comment PR'
         uses: actions/github-script@v3
         with:
@@ -122,6 +115,13 @@ jobs:
     runs-on: ubuntu-latest
     if: needs.set-state.outputs.pr_approved == 'true' && needs.set-state.outputs.deploy_prod == 'true'
     steps:
+      - name: check prod azure connection string
+        if: env.AZURE_PROD_CONNECTION_STRING == null
+        run: |
+          echo "::error::Please set the Azure Blob Storage connection string as AZURE_PROD_CONNECTION_STRING in Github Secrets"
+          exit 1
+        env:
+          AZURE_PROD_CONNECTION_STRING: ${{ secrets.AZURE_PROD_CONNECTION_STRING }}
       - name: 'Comment PR'
         uses: actions/github-script@v3
         with:
