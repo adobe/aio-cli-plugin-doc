@@ -19,7 +19,7 @@ jest.mock('execa')
 jest.mock('yeoman-environment')
 jest.mock('fs')
 
-const defaultTemplate = 'https://github.com/AdobeDocs/gatsby-theme-parliament-documentation'
+const defaultTemplate = 'https://github.com/AdobeDocs/dev-site-documentation-template'
 
 const mockRegister = jest.fn()
 const mockRun = jest.fn()

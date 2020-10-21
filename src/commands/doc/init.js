@@ -20,7 +20,7 @@ class InitCommand extends BaseCommand {
   async run () {
     const { args, flags } = this.parse(InitCommand)
     const destDir = path.resolve(args.path)
-    const template = flags.template || 'https://github.com/AdobeDocs/gatsby-theme-parliament-documentation'
+    const template = flags.template || 'https://github.com/AdobeDocs/dev-site-documentation-template'
 
     aioLogger.debug(`using template: ${template}`)
     aioLogger.debug('creating new docs with init command.')
