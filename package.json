@@ -58,6 +58,11 @@
     "devPlugins": [
       "@oclif/plugin-help"
     ],
+    "topics": {
+      "doc": {
+        "description": "Create and build a new Adobe I/O doc site"
+      }
+    },    
     "repositoryPrefix": "<%- repo %>/blob/<%- version %>/<%- commandPath %>"
   },
   "main": "src/index.js",
