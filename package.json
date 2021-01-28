@@ -5,7 +5,7 @@
   "bugs": {
     "url": "https://github.com/adobe/aio-cli-plugin-doc/issues"
   },
-  "version": "1.1.1",
+  "version": "1.2.0",
   "dependencies": {
     "@adobe/aio-lib-core-config": "^1.2.8",
     "@adobe/aio-lib-core-logging": "^1.1.0",
@@ -62,7 +62,7 @@
       "doc": {
         "description": "Create and build a new Adobe I/O doc site"
       }
-    },    
+    },
     "repositoryPrefix": "<%- repo %>/blob/<%- version %>/<%- commandPath %>"
   },
   "main": "src/index.js",
