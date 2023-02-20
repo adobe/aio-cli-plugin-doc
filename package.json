@@ -23,7 +23,7 @@
     "@oclif/dev-cli": "^1",
     "@oclif/plugin-help": "^2",
     "acorn": "^7",
-    "chalk": "^4",
+    "chalk": "^5",
     "eslint": "^8.31.0",
     "eslint-config-oclif": "^3.1.0",
     "eslint-config-standard": "^17.0.0",
