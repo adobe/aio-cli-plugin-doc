@@ -14,7 +14,7 @@
     "@oclif/errors": "^1.1.2",
     "cli-ux": "^5.4.6",
     "execa": "^4.0.2",
-    "gatsby": "^2.23.21",
+    "gatsby": "^5.8.0",
     "yeoman-environment": "^2.5.0",
     "yeoman-generator": "^4.10.1"
   },
