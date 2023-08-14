@@ -15,7 +15,7 @@
     "cli-ux": "^5.4.6",
     "execa": "^4.0.2",
     "gatsby": "^2.23.21",
-    "yeoman-environment": "^2.5.0",
+    "yeoman-environment": "^3",
     "yeoman-generator": "^5.9.0"
   },
   "devDependencies": {
@@ -39,7 +39,7 @@
     "jest-resolve": "^24.5.0",
     "stdout-stderr": "^0.1.9",
     "yeoman-assert": "^3.1.1",
-    "yeoman-test": "^2.6.0"
+    "yeoman-test": "^7.4.0"
   },
   "engines": {
     "node": ">=14.0.0"
