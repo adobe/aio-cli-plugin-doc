@@ -30,7 +30,7 @@ describe('base command', () => {
   })
 
   test('run', async () => {
-    await expect(command.run()).rejects.toThrowError(new Error('abstract method is not implemented'))
+    await expect(command.run()).rejects.toThrow(new Error('abstract method is not implemented'))
   })
 
   test('gatsby', async () => {
