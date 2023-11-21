@@ -88,5 +88,8 @@
     "setupFilesAfterEnv": [
       "./jest.setup.js"
     ]
-  }
+  },
+  "engines": {
+    "node": ">=8.3.0"
+  }  
 }
