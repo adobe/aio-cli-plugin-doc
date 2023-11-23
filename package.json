@@ -41,9 +41,6 @@
     "yeoman-assert": "^3.1.1",
     "yeoman-test": "^7.4.0"
   },
-  "engines": {
-    "node": ">=14.0.0"
-  },
   "files": [
     "/oclif.manifest.json",
     "/src"
@@ -91,5 +88,8 @@
     "setupFilesAfterEnv": [
       "./jest.setup.js"
     ]
-  }
+  },
+  "engines": {
+    "node": ">=8.3.0"
+  }  
 }
