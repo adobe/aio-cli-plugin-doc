@@ -5,7 +5,7 @@
   "bugs": {
     "url": "https://github.com/adobe/aio-cli-plugin-doc/issues"
   },
-  "version": "1.2.1",
+  "version": "2.0.0",
   "dependencies": {
     "@adobe/aio-lib-core-config": "^5",
     "@adobe/aio-lib-core-logging": "^3",
@@ -91,5 +91,5 @@
   },
   "engines": {
     "node": ">=8.3.0"
-  }  
+  }
 }
