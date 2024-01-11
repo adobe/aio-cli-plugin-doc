@@ -7,8 +7,8 @@
   },
   "version": "1.2.1",
   "dependencies": {
-    "@adobe/aio-lib-core-config": "^1.2.8",
-    "@adobe/aio-lib-core-logging": "^1.1.0",
+    "@adobe/aio-lib-core-config": "^5",
+    "@adobe/aio-lib-core-logging": "^3",
     "@oclif/command": "^1.6.1",
     "@oclif/config": "^1.15.1",
     "@oclif/errors": "^1.1.2",
