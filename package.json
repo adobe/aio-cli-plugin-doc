@@ -5,7 +5,7 @@
   "bugs": {
     "url": "https://github.com/adobe/aio-cli-plugin-doc/issues"
   },
-  "version": "2.0.0",
+  "version": "2.0.1",
   "dependencies": {
     "@adobe/aio-lib-core-config": "^5",
     "@adobe/aio-lib-core-logging": "^3",
