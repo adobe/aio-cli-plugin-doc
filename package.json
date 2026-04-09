@@ -15,7 +15,7 @@
     "cli-ux": "^6.0.9",
     "execa": "^4.0.2",
     "gatsby": "^5.14.1",
-    "yeoman-environment": "^3",
+    "yeoman-environment": "^4",
     "yeoman-generator": "^5.9.0"
   },
   "devDependencies": {
